@@ -1,2 +1,3 @@
-# personal_ledger_web
-The web frontend for Personal Server
+# Personal Ledger - Web
+
+This git repository is for Web Server component of [Personal Ledger](https://github.com/IanTeda/personal_ledger) 
