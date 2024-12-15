@@ -1,3 +1,11 @@
+# By Default, Ignore any .*, except for:
+.*
+!.gitignore
+!.github
+!.devcontainer
+!.vscode
+!.gitmodules
+
 .DS_Store
 /node_modules/
 
