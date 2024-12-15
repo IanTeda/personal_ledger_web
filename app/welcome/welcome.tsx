@@ -1,5 +1,7 @@
+import { Button } from "~/components/ui/button";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
+import { toast } from "~/hooks/use-toast";
 
 export function Welcome() {
   return (
@@ -40,6 +42,18 @@ export function Welcome() {
               ))}
             </ul>
           </nav>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              toast({
+                title: "Scheduled: Catch up",
+                description: "Friday, February 10, 2023 at 5:57 PM",
+              });
+            }}
+          >
+            Show Toast
+          </Button>
         </div>
       </div>
     </main>
