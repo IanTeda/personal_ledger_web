@@ -1,4 +1,4 @@
-import LogoutPage from "~/logout/page";
+import LogoutPage from "~/pages/LogoutPage";
 import type { Route } from "./+types/logout";
 
 export function meta({}: Route.MetaArgs) {
