@@ -11,13 +11,16 @@ export default [
     layout("./layouts/AuthLayout.tsx", [
         route("login", "routes/login.tsx"),
         route("logout", "routes/logout.tsx"),
-        route("reset-password", "routes/reset_password.tsx"),
+        route("forgot-password", "routes/forgot_password.tsx"),
     ]),
 
     // Wrap everything in the Main Layout
     layout("layouts/MainLayout.tsx", [
         // App landing (index)
         index("routes/dashboard.tsx"),
+
+        // User profile
+        route("profile", "./routes/profile.tsx"),
 
         // App settings
         route("settings", "./layouts/SettingsLayout.tsx", [
