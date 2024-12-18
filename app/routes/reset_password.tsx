@@ -9,5 +9,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Login() {
-    return <LoginPage />;
+    return (
+        <>
+            <h1>Reset Password</h1>
+        </>
+    );
 }
