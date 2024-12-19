@@ -1,14 +1,16 @@
 import { Outlet } from "react-router";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { SidebarLayout } from "./SidebarLayout";
 
 export default function MainLayout() {
 
     return (
-        <div>
-            <div>
-                <h1>This is the Main Layout</h1>
-            </div>
-            {/* // Inject any nested routes into Layout. */}
-            <Outlet />
-        </div>
-    )
+        <SidebarProvider>
+            <SidebarLayout />
+            <main>
+                <SidebarTrigger />
+                <Outlet />
+            </main>
+        </SidebarProvider>
+    );
 }
