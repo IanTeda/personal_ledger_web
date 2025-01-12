@@ -16,8 +16,17 @@ import "./index.css";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
+// Import the DefaultNotFound component for use in the router instance configuration below
+import DefaultNotFound from './components/DefaultNotFound';
+
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({
+  // Set the default not found component to the DefaultNotFound component
+  defaultNotFoundComponent: () => <DefaultNotFound />,
+
+  // Pass the generated route tree to the router instance
+  routeTree,
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
