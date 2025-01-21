@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "proto": "npx protoc --ts_out src/grpc --proto_path protos protos/*.proto --experimental_allow_proto3_optional",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@protobuf-ts/plugin": "^2.9.4",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-router": "^1.95.1",

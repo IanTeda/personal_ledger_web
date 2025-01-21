@@ -48,3 +48,10 @@ export default tseslint.config({
   },
 })
 ```
+## Generate Protobuf Files
+
+Generate typescript protobuf code using [protobuf-ts](https://github.com/timostamm/protobuf-ts) plugin for [protoc](https://grpc.io/docs/protoc-installation/). Vite config has a custom plugin that runs the below command at start and on hot reload.
+
+```bash
+npx protoc --ts_out src/grpc --proto_path protos protos/*.proto --experimental_allow_proto3_optional
+```

@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { LoginForm } from '@/components/LoginForm'
 
+// This is the login route. It is responsible for rendering the login form.
 export const Route = createFileRoute('/login')({
   component: RouteComponent,
 })
