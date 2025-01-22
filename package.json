@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "proto": "npx protoc --ts_out src/grpc --proto_path protos protos/*.proto --experimental_allow_proto3_optional",
+    "proto_gen": "npx protoc --ts_out src/grpc -I=./protos/ ./protos/**/*.proto --experimental_allow_proto3_optional",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
