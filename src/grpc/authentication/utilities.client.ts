@@ -4,6 +4,9 @@
 //
 //-- ./proto/utilities.proto
 //
+//
+/// Authentication utilities service definitions
+//
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { Utilities } from "./utilities";
@@ -14,6 +17,7 @@ import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
  * The Utilities service definition.
+ * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
  * @generated from protobuf service authentication.Utilities
  */
@@ -27,6 +31,7 @@ export interface IUtilitiesClient {
 }
 /**
  * The Utilities service definition.
+ * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
  * @generated from protobuf service authentication.Utilities
  */

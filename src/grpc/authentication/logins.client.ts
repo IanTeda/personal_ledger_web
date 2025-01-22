@@ -4,9 +4,12 @@
 //
 //-- ./proto/logins.proto
 //
+//
+/// Authentication logins service definitions
+//
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { logins } from "./logins";
+import { loginsService } from "./logins";
 import type { LoginsDeleteResponse } from "./logins";
 import type { LoginsDeleteRequest } from "./logins";
 import type { LoginsUpdateRequest } from "./logins";
@@ -19,9 +22,11 @@ import type { LoginsCreateRequest } from "./logins";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service authentication.logins
+ * Logins service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.loginsService
  */
-export interface IloginsClient {
+export interface IloginsServiceClient {
     /**
      * @generated from protobuf rpc: Create(authentication.LoginsCreateRequest) returns (authentication.LoginsResponse);
      */
@@ -44,12 +49,14 @@ export interface IloginsClient {
     delete(input: LoginsDeleteRequest, options?: RpcOptions): UnaryCall<LoginsDeleteRequest, LoginsDeleteResponse>;
 }
 /**
- * @generated from protobuf service authentication.logins
+ * Logins service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.loginsService
  */
-export class loginsClient implements IloginsClient, ServiceInfo {
-    typeName = logins.typeName;
-    methods = logins.methods;
-    options = logins.options;
+export class loginsServiceClient implements IloginsServiceClient, ServiceInfo {
+    typeName = loginsService.typeName;
+    methods = loginsService.methods;
+    options = loginsService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**

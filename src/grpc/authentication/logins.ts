@@ -4,6 +4,9 @@
 //
 //-- ./proto/logins.proto
 //
+//
+/// Authentication logins service definitions
+//
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
@@ -15,6 +18,8 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
+ * The request message containing the create login data.
+ *
  * @generated from protobuf message authentication.LoginsCreateRequest
  */
 export interface LoginsCreateRequest {
@@ -32,6 +37,8 @@ export interface LoginsCreateRequest {
     loginIp?: number;
 }
 /**
+ * The response message containing the login data.
+ *
  * @generated from protobuf message authentication.LoginsResponse
  */
 export interface LoginsResponse {
@@ -53,6 +60,8 @@ export interface LoginsResponse {
     loginIp?: number;
 }
 /**
+ * The request message containing the read login data.
+ *
  * @generated from protobuf message authentication.LoginsReadRequest
  */
 export interface LoginsReadRequest {
@@ -62,6 +71,8 @@ export interface LoginsReadRequest {
     id: string;
 }
 /**
+ * The request message containing the login index data.
+ *
  * @generated from protobuf message authentication.LoginsIndexRequest
  */
 export interface LoginsIndexRequest {
@@ -75,6 +86,8 @@ export interface LoginsIndexRequest {
     offset: number;
 }
 /**
+ * The request message containing the update login data.
+ *
  * @generated from protobuf message authentication.LoginsUpdateRequest
  */
 export interface LoginsUpdateRequest {
@@ -96,6 +109,8 @@ export interface LoginsUpdateRequest {
     loginIp?: number;
 }
 /**
+ * The request message containing the delete login data.
+ *
  * @generated from protobuf message authentication.LoginsDeleteRequest
  */
 export interface LoginsDeleteRequest {
@@ -105,6 +120,8 @@ export interface LoginsDeleteRequest {
     id: string;
 }
 /**
+ * The response message containing the login index data.
+ *
  * @generated from protobuf message authentication.LoginsIndexResponse
  */
 export interface LoginsIndexResponse {
@@ -114,6 +131,8 @@ export interface LoginsIndexResponse {
     logins: LoginsResponse[];
 }
 /**
+ * The response message containing the delete login data.
+ *
  * @generated from protobuf message authentication.LoginsDeleteResponse
  */
 export interface LoginsDeleteResponse {
@@ -568,9 +587,9 @@ class LoginsDeleteResponse$Type extends MessageType<LoginsDeleteResponse> {
  */
 export const LoginsDeleteResponse = new LoginsDeleteResponse$Type();
 /**
- * @generated ServiceType for protobuf service authentication.logins
+ * @generated ServiceType for protobuf service authentication.loginsService
  */
-export const logins = new ServiceType("authentication.logins", [
+export const loginsService = new ServiceType("authentication.loginsService", [
     { name: "Create", options: {}, I: LoginsCreateRequest, O: LoginsResponse },
     { name: "Read", options: {}, I: LoginsReadRequest, O: LoginsResponse },
     { name: "Index", options: {}, I: LoginsIndexRequest, O: LoginsIndexResponse },

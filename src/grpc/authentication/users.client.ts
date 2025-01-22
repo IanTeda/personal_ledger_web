@@ -4,9 +4,12 @@
 //
 //-- ./proto/users.proto
 //
+//
+/// Authentication users service definitions
+//
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { Users } from "./users";
+import { UsersService } from "./users";
 import type { DeleteUserResponse } from "./users";
 import type { DeleteUserRequest } from "./users";
 import type { UpdateUserRequest } from "./users";
@@ -19,9 +22,11 @@ import type { CreateUserRequest } from "./users";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service authentication.Users
+ * Define the Users service definition (endpoints).``
+ *
+ * @generated from protobuf service authentication.UsersService
  */
-export interface IUsersClient {
+export interface IUsersServiceClient {
     /**
      * @generated from protobuf rpc: Create(authentication.CreateUserRequest) returns (authentication.UserResponse);
      */
@@ -44,12 +49,14 @@ export interface IUsersClient {
     delete(input: DeleteUserRequest, options?: RpcOptions): UnaryCall<DeleteUserRequest, DeleteUserResponse>;
 }
 /**
- * @generated from protobuf service authentication.Users
+ * Define the Users service definition (endpoints).``
+ *
+ * @generated from protobuf service authentication.UsersService
  */
-export class UsersClient implements IUsersClient, ServiceInfo {
-    typeName = Users.typeName;
-    methods = Users.methods;
-    options = Users.options;
+export class UsersServiceClient implements IUsersServiceClient, ServiceInfo {
+    typeName = UsersService.typeName;
+    methods = UsersService.methods;
+    options = UsersService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**

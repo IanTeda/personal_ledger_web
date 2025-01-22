@@ -4,6 +4,9 @@
 //
 //-- ./proto/sessions.proto
 //
+//
+/// Authentication sessions service definitions file
+//
 import { Empty } from "./common";
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
@@ -16,6 +19,8 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
+ * The request message containing the read session data.
+ *
  * @generated from protobuf message authentication.SessionsReadRequest
  */
 export interface SessionsReadRequest {
@@ -25,6 +30,8 @@ export interface SessionsReadRequest {
     id: string;
 }
 /**
+ * The request message containing the session index data.
+ *
  * @generated from protobuf message authentication.SessionsIndexRequest
  */
 export interface SessionsIndexRequest {
@@ -38,6 +45,8 @@ export interface SessionsIndexRequest {
     offset: bigint;
 }
 /**
+ * The request message containing the revoke session data.
+ *
  * @generated from protobuf message authentication.SessionsRevokeRequest
  */
 export interface SessionsRevokeRequest {
@@ -47,6 +56,8 @@ export interface SessionsRevokeRequest {
     id: string;
 }
 /**
+ * The request message containing the revoke user session data.
+ *
  * @generated from protobuf message authentication.SessionsRevokeUserRequest
  */
 export interface SessionsRevokeUserRequest {
@@ -56,6 +67,8 @@ export interface SessionsRevokeUserRequest {
     userId: string;
 }
 /**
+ * The response message containing the revoke session data.
+ *
  * @generated from protobuf message authentication.SessionsDeleteRequest
  */
 export interface SessionsDeleteRequest {
@@ -65,6 +78,8 @@ export interface SessionsDeleteRequest {
     id: string;
 }
 /**
+ * The request message containing the delete session data.
+ *
  * @generated from protobuf message authentication.SessionsDeleteUserRequest
  */
 export interface SessionsDeleteUserRequest {
@@ -74,6 +89,8 @@ export interface SessionsDeleteUserRequest {
     userId: string;
 }
 /**
+ * The response message containing the session data.
+ *
  * @generated from protobuf message authentication.SessionsResponse
  */
 export interface SessionsResponse {
@@ -99,6 +116,8 @@ export interface SessionsResponse {
     createdOn: string;
 }
 /**
+ * The response message containing the session index data.
+ *
  * @generated from protobuf message authentication.SessionsIndexResponse
  */
 export interface SessionsIndexResponse {
@@ -108,6 +127,8 @@ export interface SessionsIndexResponse {
     sessions: SessionsResponse[];
 }
 /**
+ * The response message containing the revoke session data.
+ *
  * @generated from protobuf message authentication.SessionsRevokeResponse
  */
 export interface SessionsRevokeResponse {
@@ -117,6 +138,8 @@ export interface SessionsRevokeResponse {
     rowsAffected: bigint;
 }
 /**
+ * The response message containing the delete session data.
+ *
  * @generated from protobuf message authentication.SessionsDeleteResponse
  */
 export interface SessionsDeleteResponse {
@@ -636,9 +659,9 @@ class SessionsDeleteResponse$Type extends MessageType<SessionsDeleteResponse> {
  */
 export const SessionsDeleteResponse = new SessionsDeleteResponse$Type();
 /**
- * @generated ServiceType for protobuf service authentication.Sessions
+ * @generated ServiceType for protobuf service authentication.SessionsService
  */
-export const Sessions = new ServiceType("authentication.Sessions", [
+export const SessionsService = new ServiceType("authentication.SessionsService", [
     { name: "Read", options: {}, I: SessionsReadRequest, O: SessionsResponse },
     { name: "Index", options: {}, I: SessionsIndexRequest, O: SessionsIndexResponse },
     { name: "Revoke", options: {}, I: SessionsRevokeRequest, O: SessionsRevokeResponse },

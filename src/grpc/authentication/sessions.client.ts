@@ -4,9 +4,12 @@
 //
 //-- ./proto/sessions.proto
 //
+//
+/// Authentication sessions service definitions file
+//
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { Sessions } from "./sessions";
+import { SessionsService } from "./sessions";
 import type { SessionsDeleteUserRequest } from "./sessions";
 import type { SessionsDeleteResponse } from "./sessions";
 import type { SessionsDeleteRequest } from "./sessions";
@@ -22,9 +25,11 @@ import type { SessionsReadRequest } from "./sessions";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service authentication.Sessions
+ * Define the Sessions service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.SessionsService
  */
-export interface ISessionsClient {
+export interface ISessionsServiceClient {
     /**
      * @generated from protobuf rpc: Read(authentication.SessionsReadRequest) returns (authentication.SessionsResponse);
      */
@@ -59,12 +64,14 @@ export interface ISessionsClient {
     deleteAll(input: Empty, options?: RpcOptions): UnaryCall<Empty, SessionsDeleteResponse>;
 }
 /**
- * @generated from protobuf service authentication.Sessions
+ * Define the Sessions service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.SessionsService
  */
-export class SessionsClient implements ISessionsClient, ServiceInfo {
-    typeName = Sessions.typeName;
-    methods = Sessions.methods;
-    options = Sessions.options;
+export class SessionsServiceClient implements ISessionsServiceClient, ServiceInfo {
+    typeName = SessionsService.typeName;
+    methods = SessionsService.methods;
+    options = SessionsService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**

@@ -4,6 +4,9 @@
 //
 //-- ./proto/users.proto
 //
+//
+/// Authentication users service definitions
+//
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
@@ -15,6 +18,8 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
+ * The request message containing the create user data.
+ *
  * @generated from protobuf message authentication.CreateUserRequest
  */
 export interface CreateUserRequest {
@@ -44,6 +49,8 @@ export interface CreateUserRequest {
     isVerified: boolean;
 }
 /**
+ * The response message containing the user response data.
+ *
  * @generated from protobuf message authentication.UserResponse
  */
 export interface UserResponse {
@@ -77,6 +84,8 @@ export interface UserResponse {
     createdOn: string;
 }
 /**
+ * The request message containing the read user data.
+ *
  * @generated from protobuf message authentication.ReadUserRequest
  */
 export interface ReadUserRequest {
@@ -115,6 +124,8 @@ export interface UpdateUserRequest {
     isVerified: boolean;
 }
 /**
+ * The request message containing the user index data.
+ *
  * @generated from protobuf message authentication.UserIndexRequest
  */
 export interface UserIndexRequest {
@@ -128,6 +139,8 @@ export interface UserIndexRequest {
     offset: bigint;
 }
 /**
+ * The request message containing the user delete request data.
+ *
  * @generated from protobuf message authentication.DeleteUserRequest
  */
 export interface DeleteUserRequest {
@@ -137,6 +150,8 @@ export interface DeleteUserRequest {
     id: string;
 }
 /**
+ * The response message containing the user index response data.
+ *
  * @generated from protobuf message authentication.UserIndexResponse
  */
 export interface UserIndexResponse {
@@ -146,6 +161,8 @@ export interface UserIndexResponse {
     users: UserResponse[];
 }
 /**
+ * The response message containing the user delete response data.
+ *
  * @generated from protobuf message authentication.DeleteUserResponse
  */
 export interface DeleteUserResponse {
@@ -667,9 +684,9 @@ class DeleteUserResponse$Type extends MessageType<DeleteUserResponse> {
  */
 export const DeleteUserResponse = new DeleteUserResponse$Type();
 /**
- * @generated ServiceType for protobuf service authentication.Users
+ * @generated ServiceType for protobuf service authentication.UsersService
  */
-export const Users = new ServiceType("authentication.Users", [
+export const UsersService = new ServiceType("authentication.UsersService", [
     { name: "Create", options: {}, I: CreateUserRequest, O: UserResponse },
     { name: "Read", options: {}, I: ReadUserRequest, O: UserResponse },
     { name: "Index", options: {}, I: UserIndexRequest, O: UserIndexResponse },

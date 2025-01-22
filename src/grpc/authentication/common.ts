@@ -4,6 +4,9 @@
 //
 //-- ./proto/common.proto
 //
+//
+/// Authentication common definitions
+//
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
@@ -13,7 +16,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * Empty message.
+ * The request message containing the empty data.
  *
  * @generated from protobuf message authentication.Empty
  */

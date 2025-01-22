@@ -4,6 +4,9 @@
 //
 //-- ./proto/utilities.proto
 //
+//
+/// Authentication utilities service definitions
+//
 import { Empty } from "./common";
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";

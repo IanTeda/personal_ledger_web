@@ -6,7 +6,6 @@
 //
 //
 /// Authentication Service definitions
-/// ---
 //
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
@@ -19,6 +18,8 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
+ * The request message containing the login data.
+ *
  * @generated from protobuf message authentication.LoginRequest
  */
 export interface LoginRequest {
@@ -32,6 +33,8 @@ export interface LoginRequest {
     password: string;
 }
 /**
+ * The response message containing the token data.
+ *
  * @generated from protobuf message authentication.TokenResponse
  */
 export interface TokenResponse {
@@ -45,6 +48,8 @@ export interface TokenResponse {
     refreshToken: string;
 }
 /**
+ * The request message containing the refresh token data.
+ *
  * @generated from protobuf message authentication.RefreshRequest
  */
 export interface RefreshRequest {
@@ -54,6 +59,8 @@ export interface RefreshRequest {
     refreshToken: string;
 }
 /**
+ * The request message containing the update password data.
+ *
  * @generated from protobuf message authentication.UpdatePasswordRequest
  */
 export interface UpdatePasswordRequest {
@@ -71,6 +78,8 @@ export interface UpdatePasswordRequest {
     passwordNew: string;
 }
 /**
+ * The request message containing the reset password data.
+ *
  * @generated from protobuf message authentication.ResetPasswordRequest
  */
 export interface ResetPasswordRequest {
@@ -80,6 +89,8 @@ export interface ResetPasswordRequest {
     email: string;
 }
 /**
+ * The response message containing the reset password data.
+ *
  * @generated from protobuf message authentication.ResetPasswordResponse
  */
 export interface ResetPasswordResponse {
@@ -89,6 +100,8 @@ export interface ResetPasswordResponse {
     message: string;
 }
 /**
+ * The request message containing the register data.
+ *
  * @generated from protobuf message authentication.RegisterRequest
  */
 export interface RegisterRequest {
@@ -102,6 +115,8 @@ export interface RegisterRequest {
     password: string;
 }
 /**
+ * The request message containing the logout data.
+ *
  * @generated from protobuf message authentication.LogoutRequest
  */
 export interface LogoutRequest {
@@ -111,6 +126,8 @@ export interface LogoutRequest {
     refreshToken: string;
 }
 /**
+ * The response message containing the logout data.
+ *
  * @generated from protobuf message authentication.LogoutResponse
  */
 export interface LogoutResponse {
@@ -583,9 +600,9 @@ class LogoutResponse$Type extends MessageType<LogoutResponse> {
  */
 export const LogoutResponse = new LogoutResponse$Type();
 /**
- * @generated ServiceType for protobuf service authentication.Authentication
+ * @generated ServiceType for protobuf service authentication.AuthenticationService
  */
-export const Authentication = new ServiceType("authentication.Authentication", [
+export const AuthenticationService = new ServiceType("authentication.AuthenticationService", [
     { name: "Login", options: {}, I: LoginRequest, O: TokenResponse },
     { name: "Refresh", options: {}, I: RefreshRequest, O: TokenResponse },
     { name: "UpdatePassword", options: {}, I: UpdatePasswordRequest, O: TokenResponse },

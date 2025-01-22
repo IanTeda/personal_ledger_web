@@ -6,11 +6,10 @@
 //
 //
 /// Authentication Service definitions
-/// ---
 //
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { Authentication } from "./authentication";
+import { AuthenticationService } from "./authentication";
 import type { LogoutResponse } from "./authentication";
 import type { LogoutRequest } from "./authentication";
 import type { RegisterRequest } from "./authentication";
@@ -24,9 +23,11 @@ import type { LoginRequest } from "./authentication";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service authentication.Authentication
+ * Define the Authentication service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.AuthenticationService
  */
-export interface IAuthenticationClient {
+export interface IAuthenticationServiceClient {
     /**
      * @generated from protobuf rpc: Login(authentication.LoginRequest) returns (authentication.TokenResponse);
      */
@@ -53,12 +54,14 @@ export interface IAuthenticationClient {
     logout(input: LogoutRequest, options?: RpcOptions): UnaryCall<LogoutRequest, LogoutResponse>;
 }
 /**
- * @generated from protobuf service authentication.Authentication
+ * Define the Authentication service definition (endpoints).
+ *
+ * @generated from protobuf service authentication.AuthenticationService
  */
-export class AuthenticationClient implements IAuthenticationClient, ServiceInfo {
-    typeName = Authentication.typeName;
-    methods = Authentication.methods;
-    options = Authentication.options;
+export class AuthenticationServiceClient implements IAuthenticationServiceClient, ServiceInfo {
+    typeName = AuthenticationService.typeName;
+    methods = AuthenticationService.methods;
+    options = AuthenticationService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**
