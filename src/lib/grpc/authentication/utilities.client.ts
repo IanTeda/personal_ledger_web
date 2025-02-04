@@ -9,7 +9,7 @@
 //
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { Utilities } from "./utilities";
+import { UtilitiesService } from "./utilities";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { PingResponse } from "./utilities";
 import type { Empty } from "./common";
@@ -19,9 +19,9 @@ import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
  * The Utilities service definition.
  * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
- * @generated from protobuf service authentication.Utilities
+ * @generated from protobuf service authentication.UtilitiesService
  */
-export interface IUtilitiesClient {
+export interface IUtilitiesServiceClient {
     /**
      * Sends a ping
      *
@@ -33,12 +33,12 @@ export interface IUtilitiesClient {
  * The Utilities service definition.
  * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
- * @generated from protobuf service authentication.Utilities
+ * @generated from protobuf service authentication.UtilitiesService
  */
-export class UtilitiesClient implements IUtilitiesClient, ServiceInfo {
-    typeName = Utilities.typeName;
-    methods = Utilities.methods;
-    options = Utilities.options;
+export class UtilitiesServiceClient implements IUtilitiesServiceClient, ServiceInfo {
+    typeName = UtilitiesService.typeName;
+    methods = UtilitiesService.methods;
+    options = UtilitiesService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**

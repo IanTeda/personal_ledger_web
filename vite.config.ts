@@ -6,7 +6,7 @@ import { execSync } from "child_process";
 
 // Protoc code generation command
 const PROTOC_CODE_GEN_COMMAND =
-  "npx protoc --ts_out src/grpc -I=./protos/ ./protos/**/*.proto --experimental_allow_proto3_optional";
+  "npx protoc --ts_out src/lib/grpc -I=./protos/ ./protos/**/*.proto --experimental_allow_proto3_optional";
 
 // Build proto code files
 const protocBuild: PluginOption = {

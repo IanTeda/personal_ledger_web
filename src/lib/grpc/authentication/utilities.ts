@@ -77,8 +77,8 @@ class PingResponse$Type extends MessageType<PingResponse> {
  */
 export const PingResponse = new PingResponse$Type();
 /**
- * @generated ServiceType for protobuf service authentication.Utilities
+ * @generated ServiceType for protobuf service authentication.UtilitiesService
  */
-export const Utilities = new ServiceType("authentication.Utilities", [
+export const UtilitiesService = new ServiceType("authentication.UtilitiesService", [
     { name: "Ping", options: {}, I: Empty, O: PingResponse }
 ]);

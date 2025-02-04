@@ -6,6 +6,7 @@
         "galkaev",
         "gitmodules",
         "grayscale",
+        "grpcweb",
         "healthcheck",
         "ianteda",
         "isready",
@@ -18,5 +19,6 @@
         "options": [
             "--proto_path=${workspaceRoot}/protos/"
         ]
-    }
+    },
+    "makefile.configureOnOpen": false
 }
