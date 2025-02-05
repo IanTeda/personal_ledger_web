@@ -1,0 +1,24 @@
+{
+    "cSpell.words": [
+        "adminer",
+        "Avenir",
+        "center",
+        "galkaev",
+        "gitmodules",
+        "grayscale",
+        "grpcweb",
+        "healthcheck",
+        "ianteda",
+        "isready",
+        "optimize",
+        "protoc",
+        "protos",
+        "rgba"
+    ],
+    "protoc": {
+        "options": [
+            "--proto_path=${workspaceRoot}/protos/"
+        ]
+    },
+    "makefile.configureOnOpen": false
+}
