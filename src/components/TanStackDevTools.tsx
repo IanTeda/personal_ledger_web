@@ -23,14 +23,14 @@ const TanStackRouterDevtools =
         }))
       );
 
-// const TanStackQueryDevtools =
-//   process.env.NODE_ENV === "production"
-//     ? () => null
-//     : lazy(() =>
-//         import("@tanstack/react-query-devtools").then((res) => ({
-//           default: res.ReactQueryDevtools,
-//         }))
-//       );
+const TanStackQueryDevtools =
+  process.env.NODE_ENV === "production"
+    ? () => null
+    : lazy(() =>
+        import("@tanstack/react-query-devtools").then((res) => ({
+          default: res.ReactQueryDevtools,
+        }))
+      );
 
 // Export the TanStackDevTools component
 export default function TanStackDevTools() {
@@ -39,7 +39,7 @@ export default function TanStackDevTools() {
       {/* // Wrap the TanStackRouterDevtools component in a Suspense component so it falls back after loading */}
       <Suspense>
         <TanStackRouterDevtools position="bottom-right" />
-        {/* <TanStackQueryDevtools buttonPosition="bottom-right" /> */}
+        <TanStackQueryDevtools buttonPosition="bottom-right" />
       </Suspense>
     </>
   );
