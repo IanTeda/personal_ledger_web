@@ -17,7 +17,6 @@ import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
  * The Utilities service definition.
- * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
  * @generated from protobuf service authentication.UtilitiesService
  */
@@ -31,7 +30,6 @@ export interface IUtilitiesServiceClient {
 }
 /**
  * The Utilities service definition.
- * TODO: Update the service name to include Service, leaving it as is to test against the docker image
  *
  * @generated from protobuf service authentication.UtilitiesService
  */
