@@ -1,6 +1,7 @@
 //--
 
 import { Empty } from "@/lib/grpc/authentication/common";
+import { PingResponse } from "@/lib/grpc/authentication/utilities";
 import {
   IUtilitiesServiceClient,
   UtilitiesServiceClient,
@@ -20,16 +21,15 @@ const transport = new GrpcWebFetchTransport({
 
 const client = new UtilitiesServiceClient(transport);
 
-async function ping() {
+export async function ping() {
   await pingRequest(client);
 }
 
-async function pingRequest(client: IUtilitiesServiceClient) {
+export async function pingRequest(client: IUtilitiesServiceClient): Promise<PingResponse> {
   const request = Empty.create();
 
-  const response = await client.ping(request);
+  const response = await client.ping(request).response;
 
-  console.log(response.response.message);
+  return response;
 }
 
-export default ping;
