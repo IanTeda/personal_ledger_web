@@ -1,4 +1,10 @@
+//-- ./src/services/authentication.ts
 
+/// # Authentication Service
+///
+/// The authentication service is responsible for handling user authentication with
+/// the application. The service provides a login method that accepts an email and
+/// password and returns a token response from the backend.
 
 import {
   LoginRequest,
@@ -7,12 +13,15 @@ import {
 import { AuthenticationServiceClient } from "@/lib/grpc/authentication/authentication.client";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 
-export async function sendLoginRequest(
+export async function sendAuthenticationRequest(
   email: string,
   password: string
 ): Promise<TokenResponse> {
+  //TODO: Implement logging standard for the app
+  console.log("Send authentication request.");
 
   // Create a new transport layer
+  // TODO: Abstract transport layer for other services to use
   const transport = new GrpcWebFetchTransport({
     baseUrl: "http://localhost:8091",
   });
@@ -20,13 +29,17 @@ export async function sendLoginRequest(
   // Create a new Authentication service client
   const client = new AuthenticationServiceClient(transport);
 
-  // Building login request object
+  // Building Authentication request object
+  // TODO: Rename proto to AuthenticationRequest
   const request = LoginRequest.create({
     email: email,
     password: password,
   });
 
+  // Send authentication request to authentication client
   const { response } = await client.login(request);
+
+  console.log("Response is: ", response)
 
   return response;
 }

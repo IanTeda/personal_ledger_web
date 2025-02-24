@@ -27,9 +27,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { LoginRequest, TokenResponse } from "@/lib/grpc/authentication/authentication";
-import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
-import { AuthenticationServiceClient } from "@/lib/grpc/authentication/authentication.client";
+import { TokenResponse } from "@/lib/grpc/authentication/authentication";
+import { sendAuthenticationRequest } from "@/services/authentication";
 
 export function LoginForm({
   className,
@@ -40,9 +39,7 @@ export function LoginForm({
 
   const { data } = useQuery({
     queryKey: ["tokens"],
-    queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
+    queryFn: async () => {      
       const response = TokenResponse.create({
         accessToken: "access_token",
         refreshToken: "refresh_token",
@@ -52,38 +49,18 @@ export function LoginForm({
     }
   });
 
-  const updateTokens = useMutation({
+  const mutateTokens = useMutation({
     mutationKey: ["tokens"],
-    mutationFn: async (value: { email: string; password: string }) => {
-      console.log("Mutate tokens");
-      console.log(value);
-
-      // Create a new transport layer
-      const transport = new GrpcWebFetchTransport({
-        baseUrl: "http://localhost:8091",
-      });
-
-      // Create a new Authentication service client
-      const client = new AuthenticationServiceClient(transport);
-
-      // Building login request object
-      const request = LoginRequest.create({
-        email: value.email,
-        password: value.password,
-      });
-
-      // Send login request to authentication client
-      const { response } = await client.login(request);
-
-      console.log("Access Token: ", response.accessToken);
-      console.log("Refresh Token: ", response.refreshToken);
-
-      return response;
-    },
+    mutationFn: async ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    }) => { return sendAuthenticationRequest(email, password); },
     onSuccess: (data) => {
       queryClient.setQueryData(["tokens"], data);
-    }
-
+    },
   });
 
   const form = useForm({
@@ -98,17 +75,7 @@ export function LoginForm({
     onSubmit: async ({ value }) => {
       console.log("Login form submit:", value);
       // Do something with form data
-      await updateTokens.mutateAsync(value);
-
-      // const { accessToken, refreshToken } = await sendLoginRequest(
-      //   value.email,
-      //   value.password
-      // );
-
-      // console.log("Access Token: ", accessToken);
-      // console.log("Refresh Token: ", refreshToken);
-
-      // await saveTokens.mutateAsync(value);
+      await mutateTokens.mutateAsync({ email: value.email, password: value.password });
     },
   });
 
