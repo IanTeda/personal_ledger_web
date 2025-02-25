@@ -27,19 +27,19 @@ export async function sendAuthenticationRequest(
   });
 
   // Create a new Authentication service client
-  const client = new AuthenticationServiceClient(transport);
+  const authentication_client = new AuthenticationServiceClient(transport);
 
   // Building Authentication request object
   // TODO: Rename proto to AuthenticationRequest
-  const request = LoginRequest.create({
+  const authentication_request = LoginRequest.create({
     email: email,
     password: password,
   });
 
   // Send authentication request to authentication client
-  const { response } = await client.login(request);
+  const { response: authentication_response } = await authentication_client.login(authentication_request);
 
-  console.log("Response is: ", response)
+  console.log("Response is: ", authentication_response);
 
-  return response;
+  return authentication_response;
 }

@@ -3,7 +3,6 @@
 import { Empty } from "@/lib/grpc/authentication/common";
 import { PingResponse } from "@/lib/grpc/authentication/utilities";
 import {
-  IUtilitiesServiceClient,
   UtilitiesServiceClient,
 } from "@/lib/grpc/authentication/utilities.client";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
@@ -15,21 +14,24 @@ import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 //
 // - [dnevb/dburst](https://github.com/dnevb/dburst/blob/a440b2a18f874f22fed2825b6e9b0e24cd606e73/ui/src/provider/services.ts)
 
-const transport = new GrpcWebFetchTransport({
-  baseUrl: "http://localhost:8091",
-});
+// TODO: Needs a status or health check type/domain to replace PingResponse
+export async function sendPintRequest(): Promise<PingResponse> {
+  console.log("Send ping request")
 
-const client = new UtilitiesServiceClient(transport);
+  // Create a new GRPC transport layer
+  const transport = new GrpcWebFetchTransport({
+    baseUrl: "http://localhost:8091",
+  });
 
-export async function ping() {
-  await pingRequest(client);
+  // Create a new utilities client
+  const utilities_client = new UtilitiesServiceClient(transport);
+
+  // Create a ping request
+  const ping_request = Empty.create({});
+
+  const { response: ping_response, status } = await utilities_client.ping(ping_request);
+
+  console.log("Backend status is:", status)
+
+  return ping_response;
 }
-
-export async function pingRequest(client: IUtilitiesServiceClient): Promise<PingResponse> {
-  const request = Empty.create();
-
-  const response = await client.ping(request).response;
-
-  return response;
-}
-
