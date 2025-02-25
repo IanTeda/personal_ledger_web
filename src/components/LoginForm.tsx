@@ -26,42 +26,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "@tanstack/react-form";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { TokenResponse } from "@/lib/grpc/authentication/authentication";
-import { sendAuthenticationRequest } from "@/services/authentication";
+import { useAuthenticationMutation } from "@/queries/authentication";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
 
-  const queryClient = useQueryClient();
-
-  const { data } = useQuery({
-    queryKey: ["tokens"],
-    queryFn: async () => {      
-      const response = TokenResponse.create({
-        accessToken: "access_token",
-        refreshToken: "refresh_token",
-      });
-
-      return response;
-    }
-  });
-
-  const mutateTokens = useMutation({
-    mutationKey: ["tokens"],
-    mutationFn: async ({
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-    }) => { return sendAuthenticationRequest(email, password); },
-    onSuccess: (data) => {
-      queryClient.setQueryData(["tokens"], data);
-    },
-  });
+  // Reference mutation hook
+  const mutation = useAuthenticationMutation();
 
   const form = useForm({
     // Set default form values
@@ -71,11 +44,13 @@ export function LoginForm({
       password: "S3cret-Admin-Pas$word!",
     },
 
-    // Form submission handler. Do something with form data
+    // Form submission handler
     onSubmit: async ({ value }) => {
-      console.log("Login form submit:", value);
-      // Do something with form data
-      await mutateTokens.mutateAsync({ email: value.email, password: value.password });
+      // Call the mutation hook
+      await mutation.mutateAsync({
+        email: value.email,
+        password: value.password,
+      });
     },
   });
 
@@ -106,7 +81,7 @@ export function LoginForm({
                     <Input
                       id="email"
                       type="email"
-                      placeholder="m@example.com"
+                      placeholder="me@example.com"
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       required
@@ -150,7 +125,7 @@ export function LoginForm({
         </CardContent>
       </Card>
       <div>
-        <pre>{data?.accessToken}</pre>
+        {/* <pre>{data?.accessToken}</pre> */}
       </div>
     </div>
   );

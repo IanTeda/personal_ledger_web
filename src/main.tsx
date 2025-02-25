@@ -37,12 +37,19 @@ declare module "@tanstack/react-router" {
 }
 
 // Initiate a new Tanstack Query client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 10,
+    },
+  },
+});
 
 // Render the application
 createRoot(document.getElementById("root")!).render(
   // Wrap the application in a React StrictMode
   <StrictMode>
+    {/* // Wrap the application in a Tanstack QueryClientProvider for context */}
     <QueryClientProvider client={queryClient}>
         {/* // Pass the router instance to the RouterProvider */}
         <RouterProvider router={router} />
