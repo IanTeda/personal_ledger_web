@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LogoutImport } from './routes/logout'
 import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
+import { Route as SettingsHealthCheckImport } from './routes/settings/health-check'
 
 // Create/Update Routes
 
@@ -32,6 +33,12 @@ const LoginRoute = LoginImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsHealthCheckRoute = SettingsHealthCheckImport.update({
+  id: '/settings/health-check',
+  path: '/settings/health-check',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogoutImport
       parentRoute: typeof rootRoute
     }
+    '/settings/health-check': {
+      id: '/settings/health-check'
+      path: '/settings/health-check'
+      fullPath: '/settings/health-check'
+      preLoaderRoute: typeof SettingsHealthCheckImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +83,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
+  '/settings/health-check': typeof SettingsHealthCheckRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
+  '/settings/health-check': typeof SettingsHealthCheckRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +98,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
+  '/settings/health-check': typeof SettingsHealthCheckRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/logout'
+  fullPaths: '/' | '/login' | '/logout' | '/settings/health-check'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/logout'
-  id: '__root__' | '/' | '/login' | '/logout'
+  to: '/' | '/login' | '/logout' | '/settings/health-check'
+  id: '__root__' | '/' | '/login' | '/logout' | '/settings/health-check'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +114,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
+  SettingsHealthCheckRoute: typeof SettingsHealthCheckRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
+  SettingsHealthCheckRoute: SettingsHealthCheckRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +136,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/login",
-        "/logout"
+        "/logout",
+        "/settings/health-check"
       ]
     },
     "/": {
@@ -128,6 +148,9 @@ export const routeTree = rootRoute
     },
     "/logout": {
       "filePath": "logout.tsx"
+    },
+    "/settings/health-check": {
+      "filePath": "settings/health-check.tsx"
     }
   }
 }

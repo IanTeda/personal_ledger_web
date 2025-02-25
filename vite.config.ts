@@ -1,5 +1,5 @@
 import path from "path";
-import { PluginOption, defineConfig } from "vite";
+import { defineConfig, PluginOption } from "vite";
 import viteReact from "@vitejs/plugin-react";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { execSync } from "child_process";
@@ -15,19 +15,20 @@ const protocBuild: PluginOption = {
   buildStart() {
     execSync(PROTOC_CODE_GEN_COMMAND);
   },
-  
-  // On Vite watch rebuild (hot update)
-  handleHotUpdate() {
-    execSync(PROTOC_CODE_GEN_COMMAND);
-  },
+
+  //TODO: Causing an infinite loop with Vite hot module reload
+  // // On Vite watch rebuild (hot update)
+  // handleHotUpdate() {
+  //   execSync(PROTOC_CODE_GEN_COMMAND);
+  // },
 };
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    protocBuild,
     TanStackRouterVite(),
-    viteReact(),
-    protocBuild
+    viteReact()
   ],
   resolve: {
     alias: {

@@ -2,7 +2,10 @@
     "cSpell.words": [
         "adminer",
         "Avenir",
+        "axelrindle",
         "center",
+        "dburst",
+        "dnevb",
         "galkaev",
         "gitmodules",
         "grayscale",
@@ -10,6 +13,7 @@
         "healthcheck",
         "ianteda",
         "isready",
+        "mjml",
         "optimize",
         "protoc",
         "protos",
@@ -20,5 +24,6 @@
             "--proto_path=${workspaceRoot}/protos/"
         ]
     },
-    "makefile.configureOnOpen": false
+    "makefile.configureOnOpen": false,
+    "grpc-clicker.timeout": 2,
 }
