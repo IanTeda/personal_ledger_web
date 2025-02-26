@@ -1,11 +1,10 @@
 //--
 
-import { Empty } from "@/lib/grpc/authentication/common";
-import { PingResponse } from "@/lib/grpc/authentication/utilities";
-import {
-  UtilitiesServiceClient,
-} from "@/lib/grpc/authentication/utilities.client";
+import { Empty } from "@/lib/grpc/common";
+import { PingResponse } from "@/lib/grpc/utilities";
+import { UtilitiesServiceClient } from "@/lib/grpc/utilities.client";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
+
 
 // Services
 //

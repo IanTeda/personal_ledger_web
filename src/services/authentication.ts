@@ -6,17 +6,14 @@
 /// the application. The service provides a login method that accepts an email and
 /// password and returns a token response from the backend.
 
-import {
-  LoginRequest,
-  TokenResponse,
-} from "@/lib/grpc/authentication/authentication";
-import { AuthenticationServiceClient } from "@/lib/grpc/authentication/authentication.client";
+import { AuthenticationRequest, AuthenticationResponse } from "@/lib/grpc/authentication";
+import { AuthenticationServiceClient } from "@/lib/grpc/authentication.client";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 
 export async function sendAuthenticationRequest(
   email: string,
   password: string
-): Promise<TokenResponse> {
+): Promise<AuthenticationResponse> {
   //TODO: Implement logging standard for the app
   console.log("Send authentication request.");
 
@@ -31,13 +28,13 @@ export async function sendAuthenticationRequest(
 
   // Building Authentication request object
   // TODO: Rename proto to AuthenticationRequest
-  const authentication_request = LoginRequest.create({
+  const authentication_request = AuthenticationRequest.create({
     email: email,
     password: password,
   });
 
   // Send authentication request to authentication client
-  const { response: authentication_response } = await authentication_client.login(authentication_request);
+  const { response: authentication_response } = await authentication_client.authentication(authentication_request);
 
   console.log("Response is: ", authentication_response);
 
