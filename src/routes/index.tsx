@@ -3,9 +3,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
+
+  // console.log("API URL:", configuration.AUTHENTICATION_BASE_URL);
 
   const { data } = usePingQuery();
 

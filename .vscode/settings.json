@@ -17,7 +17,9 @@
         "optimize",
         "protoc",
         "protos",
-        "rgba"
+        "rgba",
+        "tmpl",
+        "VITE"
     ],
     "protoc": {
         "options": [

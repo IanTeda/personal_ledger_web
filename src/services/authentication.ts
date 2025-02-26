@@ -6,6 +6,7 @@
 /// the application. The service provides a login method that accepts an email and
 /// password and returns a token response from the backend.
 
+import { configuration } from "@/configuration";
 import { AuthenticationRequest, AuthenticationResponse } from "@/lib/grpc/authentication";
 import { AuthenticationServiceClient } from "@/lib/grpc/authentication.client";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
@@ -20,7 +21,7 @@ export async function sendAuthenticationRequest(
   // Create a new transport layer
   // TODO: Abstract transport layer for other services to use
   const transport = new GrpcWebFetchTransport({
-    baseUrl: "http://localhost:8091",
+    baseUrl: configuration.AUTHENTICATION_BASE_URL,
   });
 
   // Create a new Authentication service client
