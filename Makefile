@@ -7,7 +7,8 @@ npm-install:
 	npm i
 
 generate:
-	npx protoc -I . --ts_out . --ts_opt client_grpc1,optimize_code_size service-example.proto
+	# npx protoc -I . --ts_out . --ts_opt client_grpc1,optimize_code_size service-example.proto
+	npx protoc --ts_out src/lib/grpc -I=./protos/authentication ./protos/authentication/**/*.proto --experimental_allow_proto3_optional
 
 run-client:
 	npx ts-node client.ts
