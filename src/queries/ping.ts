@@ -1,19 +1,32 @@
 //-- ./src/queries/ping.ts
 
-import { PingResponse } from "@/lib/grpc/authentication/utilities";
+import { PingResponse } from "@/lib/grpc/utilities";
 import { sendPintRequest as sendPingRequest } from "@/services/utilities";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Logger from "@/logger";
 
-/// # TanStack Ping Query
-///
-/// Query hooks to ping the backend
+/**
+ * ## Logger Instance
+ * 
+ * Create a new logger instance to log messages to the console.
+ */
+const log = new Logger();
 
-// export type Ping = {
-//   isOnline?: string | undefined;
-// };
-
+/**
+ * ## Ping Query Key
+ * 
+ * The ping query key is used to identify the ping query in the query cache.
+ */
 const PING_QUERY_KEY = "ping";
 
+/**
+ * ### Use Ping Query
+ * 
+ * The usePingQuery hook is a TanStack Query hook that is used to send a ping 
+ * request to the backend.
+ * 
+ * @returns 
+ */
 export function usePingQuery() {
   return useQuery({
     queryKey: [PING_QUERY_KEY],
@@ -22,6 +35,8 @@ export function usePingQuery() {
 }
 
 export function usePingMutation() {
+  log.debug("Creating a new ping mutation hook");
+
   const queryClient = useQueryClient();
 
   // Return the TanStack Query useMutation hook
@@ -36,6 +51,8 @@ export function usePingMutation() {
 
     // Do something with the mutation function data returned
     onSuccess: (data: PingResponse) => {
+      log.debug("Ping mutation was successful");
+      
       // Set the TokenResponse data in the query cache
       queryClient.setQueryData([PING_QUERY_KEY], data);
 

@@ -13,12 +13,15 @@
         "healthcheck",
         "ianteda",
         "isready",
+        "koenemans",
         "mjml",
+        "nextcloud",
         "optimize",
         "protoc",
         "protos",
         "rgba",
         "tmpl",
+        "tslog",
         "VITE"
     ],
     "protoc": {
