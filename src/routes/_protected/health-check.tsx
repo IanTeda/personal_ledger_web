@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/settings/health-check')({
+export const Route = createFileRoute('/_protected/health-check')({
   component: RouteComponent,
 })
 
@@ -9,5 +9,5 @@ function RouteComponent() {
     <>
       <div>Hello "/settings/health-check"!</div>
     </>
-  );
+  )
 }

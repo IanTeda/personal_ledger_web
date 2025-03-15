@@ -9,8 +9,9 @@ import Logger from "@/logger";
  * ## Logger Instance
  * 
  * Create a new logger instance to log messages to the console.
+ * 
  */
-const log = new Logger();
+const log: Logger  = new Logger();
 
 /**
  * ## Ping Query Key

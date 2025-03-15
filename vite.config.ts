@@ -23,12 +23,14 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
   // },
 // };
 
+//TODO: Do we need to include the tailwind plugin? import tailwindcss from "@tailwindcss/vite"
+
 // https://vite.dev/config/
 export default defineConfig({
   envDir: "./config",
   plugins: [
     // protocBuild,
-    TanStackRouterVite(),
+    TanStackRouterVite({ autoCodeSplitting: true }),
     viteReact()
   ],
   resolve: {

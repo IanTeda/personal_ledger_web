@@ -11,117 +11,407 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as LogoutImport } from './routes/logout'
-import { Route as LoginImport } from './routes/login'
-import { Route as IndexImport } from './routes/index'
-import { Route as SettingsHealthCheckImport } from './routes/settings/health-check'
+import { Route as AboutImport } from './routes/about'
+import { Route as UnprotectedRouteImport } from './routes/_unprotected/route'
+import { Route as ProtectedRouteImport } from './routes/_protected/route'
+import { Route as ProtectedIndexImport } from './routes/_protected/index'
+import { Route as UnprotectedLogoutImport } from './routes/_unprotected/logout'
+import { Route as UnprotectedLoginImport } from './routes/_unprotected/login'
+import { Route as ProtectedTagsImport } from './routes/_protected/tags'
+import { Route as ProtectedSettingsImport } from './routes/_protected/settings'
+import { Route as ProtectedReportsImport } from './routes/_protected/reports'
+import { Route as ProtectedPayeesImport } from './routes/_protected/payees'
+import { Route as ProtectedNotificationsImport } from './routes/_protected/notifications'
+import { Route as ProtectedLedgersImport } from './routes/_protected/ledgers'
+import { Route as ProtectedHealthCheckImport } from './routes/_protected/health-check'
+import { Route as ProtectedCategoriesImport } from './routes/_protected/categories'
+import { Route as ProtectedBudgetsImport } from './routes/_protected/budgets'
+import { Route as ProtectedAccountImport } from './routes/_protected/account'
 
 // Create/Update Routes
 
-const LogoutRoute = LogoutImport.update({
-  id: '/logout',
-  path: '/logout',
+const AboutRoute = AboutImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
-const LoginRoute = LoginImport.update({
-  id: '/login',
-  path: '/login',
+const UnprotectedRouteRoute = UnprotectedRouteImport.update({
+  id: '/_unprotected',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
+const ProtectedRouteRoute = ProtectedRouteImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProtectedIndexRoute = ProtectedIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => ProtectedRouteRoute,
 } as any)
 
-const SettingsHealthCheckRoute = SettingsHealthCheckImport.update({
-  id: '/settings/health-check',
-  path: '/settings/health-check',
-  getParentRoute: () => rootRoute,
+const UnprotectedLogoutRoute = UnprotectedLogoutImport.update({
+  id: '/logout',
+  path: '/logout',
+  getParentRoute: () => UnprotectedRouteRoute,
+} as any)
+
+const UnprotectedLoginRoute = UnprotectedLoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => UnprotectedRouteRoute,
+} as any)
+
+const ProtectedTagsRoute = ProtectedTagsImport.update({
+  id: '/tags',
+  path: '/tags',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedSettingsRoute = ProtectedSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedReportsRoute = ProtectedReportsImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedPayeesRoute = ProtectedPayeesImport.update({
+  id: '/payees',
+  path: '/payees',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedNotificationsRoute = ProtectedNotificationsImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedLedgersRoute = ProtectedLedgersImport.update({
+  id: '/ledgers',
+  path: '/ledgers',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedHealthCheckRoute = ProtectedHealthCheckImport.update({
+  id: '/health-check',
+  path: '/health-check',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedCategoriesRoute = ProtectedCategoriesImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedBudgetsRoute = ProtectedBudgetsImport.update({
+  id: '/budgets',
+  path: '/budgets',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+
+const ProtectedAccountRoute = ProtectedAccountImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => ProtectedRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRoute
     }
-    '/login': {
-      id: '/login'
+    '/_unprotected': {
+      id: '/_unprotected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof UnprotectedRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/_protected/account': {
+      id: '/_protected/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof ProtectedAccountImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/budgets': {
+      id: '/_protected/budgets'
+      path: '/budgets'
+      fullPath: '/budgets'
+      preLoaderRoute: typeof ProtectedBudgetsImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/categories': {
+      id: '/_protected/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof ProtectedCategoriesImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/health-check': {
+      id: '/_protected/health-check'
+      path: '/health-check'
+      fullPath: '/health-check'
+      preLoaderRoute: typeof ProtectedHealthCheckImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/ledgers': {
+      id: '/_protected/ledgers'
+      path: '/ledgers'
+      fullPath: '/ledgers'
+      preLoaderRoute: typeof ProtectedLedgersImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/notifications': {
+      id: '/_protected/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof ProtectedNotificationsImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/payees': {
+      id: '/_protected/payees'
+      path: '/payees'
+      fullPath: '/payees'
+      preLoaderRoute: typeof ProtectedPayeesImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/reports': {
+      id: '/_protected/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ProtectedReportsImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_protected/tags': {
+      id: '/_protected/tags'
+      path: '/tags'
+      fullPath: '/tags'
+      preLoaderRoute: typeof ProtectedTagsImport
+      parentRoute: typeof ProtectedRouteImport
+    }
+    '/_unprotected/login': {
+      id: '/_unprotected/login'
       path: '/login'
       fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof UnprotectedLoginImport
+      parentRoute: typeof UnprotectedRouteImport
     }
-    '/logout': {
-      id: '/logout'
+    '/_unprotected/logout': {
+      id: '/_unprotected/logout'
       path: '/logout'
       fullPath: '/logout'
-      preLoaderRoute: typeof LogoutImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof UnprotectedLogoutImport
+      parentRoute: typeof UnprotectedRouteImport
     }
-    '/settings/health-check': {
-      id: '/settings/health-check'
-      path: '/settings/health-check'
-      fullPath: '/settings/health-check'
-      preLoaderRoute: typeof SettingsHealthCheckImport
-      parentRoute: typeof rootRoute
+    '/_protected/': {
+      id: '/_protected/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedIndexImport
+      parentRoute: typeof ProtectedRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface ProtectedRouteRouteChildren {
+  ProtectedAccountRoute: typeof ProtectedAccountRoute
+  ProtectedBudgetsRoute: typeof ProtectedBudgetsRoute
+  ProtectedCategoriesRoute: typeof ProtectedCategoriesRoute
+  ProtectedHealthCheckRoute: typeof ProtectedHealthCheckRoute
+  ProtectedLedgersRoute: typeof ProtectedLedgersRoute
+  ProtectedNotificationsRoute: typeof ProtectedNotificationsRoute
+  ProtectedPayeesRoute: typeof ProtectedPayeesRoute
+  ProtectedReportsRoute: typeof ProtectedReportsRoute
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
+  ProtectedTagsRoute: typeof ProtectedTagsRoute
+  ProtectedIndexRoute: typeof ProtectedIndexRoute
+}
+
+const ProtectedRouteRouteChildren: ProtectedRouteRouteChildren = {
+  ProtectedAccountRoute: ProtectedAccountRoute,
+  ProtectedBudgetsRoute: ProtectedBudgetsRoute,
+  ProtectedCategoriesRoute: ProtectedCategoriesRoute,
+  ProtectedHealthCheckRoute: ProtectedHealthCheckRoute,
+  ProtectedLedgersRoute: ProtectedLedgersRoute,
+  ProtectedNotificationsRoute: ProtectedNotificationsRoute,
+  ProtectedPayeesRoute: ProtectedPayeesRoute,
+  ProtectedReportsRoute: ProtectedReportsRoute,
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
+  ProtectedTagsRoute: ProtectedTagsRoute,
+  ProtectedIndexRoute: ProtectedIndexRoute,
+}
+
+const ProtectedRouteRouteWithChildren = ProtectedRouteRoute._addFileChildren(
+  ProtectedRouteRouteChildren,
+)
+
+interface UnprotectedRouteRouteChildren {
+  UnprotectedLoginRoute: typeof UnprotectedLoginRoute
+  UnprotectedLogoutRoute: typeof UnprotectedLogoutRoute
+}
+
+const UnprotectedRouteRouteChildren: UnprotectedRouteRouteChildren = {
+  UnprotectedLoginRoute: UnprotectedLoginRoute,
+  UnprotectedLogoutRoute: UnprotectedLogoutRoute,
+}
+
+const UnprotectedRouteRouteWithChildren =
+  UnprotectedRouteRoute._addFileChildren(UnprotectedRouteRouteChildren)
+
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/login': typeof LoginRoute
-  '/logout': typeof LogoutRoute
-  '/settings/health-check': typeof SettingsHealthCheckRoute
+  '': typeof UnprotectedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/account': typeof ProtectedAccountRoute
+  '/budgets': typeof ProtectedBudgetsRoute
+  '/categories': typeof ProtectedCategoriesRoute
+  '/health-check': typeof ProtectedHealthCheckRoute
+  '/ledgers': typeof ProtectedLedgersRoute
+  '/notifications': typeof ProtectedNotificationsRoute
+  '/payees': typeof ProtectedPayeesRoute
+  '/reports': typeof ProtectedReportsRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/tags': typeof ProtectedTagsRoute
+  '/login': typeof UnprotectedLoginRoute
+  '/logout': typeof UnprotectedLogoutRoute
+  '/': typeof ProtectedIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/login': typeof LoginRoute
-  '/logout': typeof LogoutRoute
-  '/settings/health-check': typeof SettingsHealthCheckRoute
+  '': typeof UnprotectedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/account': typeof ProtectedAccountRoute
+  '/budgets': typeof ProtectedBudgetsRoute
+  '/categories': typeof ProtectedCategoriesRoute
+  '/health-check': typeof ProtectedHealthCheckRoute
+  '/ledgers': typeof ProtectedLedgersRoute
+  '/notifications': typeof ProtectedNotificationsRoute
+  '/payees': typeof ProtectedPayeesRoute
+  '/reports': typeof ProtectedReportsRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/tags': typeof ProtectedTagsRoute
+  '/login': typeof UnprotectedLoginRoute
+  '/logout': typeof UnprotectedLogoutRoute
+  '/': typeof ProtectedIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/login': typeof LoginRoute
-  '/logout': typeof LogoutRoute
-  '/settings/health-check': typeof SettingsHealthCheckRoute
+  '/_protected': typeof ProtectedRouteRouteWithChildren
+  '/_unprotected': typeof UnprotectedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/_protected/account': typeof ProtectedAccountRoute
+  '/_protected/budgets': typeof ProtectedBudgetsRoute
+  '/_protected/categories': typeof ProtectedCategoriesRoute
+  '/_protected/health-check': typeof ProtectedHealthCheckRoute
+  '/_protected/ledgers': typeof ProtectedLedgersRoute
+  '/_protected/notifications': typeof ProtectedNotificationsRoute
+  '/_protected/payees': typeof ProtectedPayeesRoute
+  '/_protected/reports': typeof ProtectedReportsRoute
+  '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/tags': typeof ProtectedTagsRoute
+  '/_unprotected/login': typeof UnprotectedLoginRoute
+  '/_unprotected/logout': typeof UnprotectedLogoutRoute
+  '/_protected/': typeof ProtectedIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/logout' | '/settings/health-check'
+  fullPaths:
+    | ''
+    | '/about'
+    | '/account'
+    | '/budgets'
+    | '/categories'
+    | '/health-check'
+    | '/ledgers'
+    | '/notifications'
+    | '/payees'
+    | '/reports'
+    | '/settings'
+    | '/tags'
+    | '/login'
+    | '/logout'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/logout' | '/settings/health-check'
-  id: '__root__' | '/' | '/login' | '/logout' | '/settings/health-check'
+  to:
+    | ''
+    | '/about'
+    | '/account'
+    | '/budgets'
+    | '/categories'
+    | '/health-check'
+    | '/ledgers'
+    | '/notifications'
+    | '/payees'
+    | '/reports'
+    | '/settings'
+    | '/tags'
+    | '/login'
+    | '/logout'
+    | '/'
+  id:
+    | '__root__'
+    | '/_protected'
+    | '/_unprotected'
+    | '/about'
+    | '/_protected/account'
+    | '/_protected/budgets'
+    | '/_protected/categories'
+    | '/_protected/health-check'
+    | '/_protected/ledgers'
+    | '/_protected/notifications'
+    | '/_protected/payees'
+    | '/_protected/reports'
+    | '/_protected/settings'
+    | '/_protected/tags'
+    | '/_unprotected/login'
+    | '/_unprotected/logout'
+    | '/_protected/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  LoginRoute: typeof LoginRoute
-  LogoutRoute: typeof LogoutRoute
-  SettingsHealthCheckRoute: typeof SettingsHealthCheckRoute
+  ProtectedRouteRoute: typeof ProtectedRouteRouteWithChildren
+  UnprotectedRouteRoute: typeof UnprotectedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  LoginRoute: LoginRoute,
-  LogoutRoute: LogoutRoute,
-  SettingsHealthCheckRoute: SettingsHealthCheckRoute,
+  ProtectedRouteRoute: ProtectedRouteRouteWithChildren,
+  UnprotectedRouteRoute: UnprotectedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
 }
 
 export const routeTree = rootRoute
@@ -134,23 +424,88 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/login",
-        "/logout",
-        "/settings/health-check"
+        "/_protected",
+        "/_unprotected",
+        "/about"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
+    "/_protected": {
+      "filePath": "_protected/route.tsx",
+      "children": [
+        "/_protected/account",
+        "/_protected/budgets",
+        "/_protected/categories",
+        "/_protected/health-check",
+        "/_protected/ledgers",
+        "/_protected/notifications",
+        "/_protected/payees",
+        "/_protected/reports",
+        "/_protected/settings",
+        "/_protected/tags",
+        "/_protected/"
+      ]
     },
-    "/login": {
-      "filePath": "login.tsx"
+    "/_unprotected": {
+      "filePath": "_unprotected/route.tsx",
+      "children": [
+        "/_unprotected/login",
+        "/_unprotected/logout"
+      ]
     },
-    "/logout": {
-      "filePath": "logout.tsx"
+    "/about": {
+      "filePath": "about.tsx"
     },
-    "/settings/health-check": {
-      "filePath": "settings/health-check.tsx"
+    "/_protected/account": {
+      "filePath": "_protected/account.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/budgets": {
+      "filePath": "_protected/budgets.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/categories": {
+      "filePath": "_protected/categories.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/health-check": {
+      "filePath": "_protected/health-check.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/ledgers": {
+      "filePath": "_protected/ledgers.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/notifications": {
+      "filePath": "_protected/notifications.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/payees": {
+      "filePath": "_protected/payees.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/reports": {
+      "filePath": "_protected/reports.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/settings": {
+      "filePath": "_protected/settings.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/tags": {
+      "filePath": "_protected/tags.tsx",
+      "parent": "/_protected"
+    },
+    "/_unprotected/login": {
+      "filePath": "_unprotected/login.tsx",
+      "parent": "/_unprotected"
+    },
+    "/_unprotected/logout": {
+      "filePath": "_unprotected/logout.tsx",
+      "parent": "/_unprotected"
+    },
+    "/_protected/": {
+      "filePath": "_protected/index.tsx",
+      "parent": "/_protected"
     }
   }
 }

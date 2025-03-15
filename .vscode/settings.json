@@ -31,4 +31,7 @@
     },
     "makefile.configureOnOpen": false,
     "grpc-clicker.timeout": 2,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    }
 }

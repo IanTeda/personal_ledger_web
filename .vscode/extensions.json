@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "GitHub.copilot",
+    "Gruntfuggly.todo-tree",
+    "planbcoding.vscode-react-refactor",
+    "vincaslt.highlight-matching-tag",
+    "vscode-icons-team.vscode-icons",
+    "wix.vscode-import-cost",
+  ]
+}

@@ -38,7 +38,7 @@ export default function TanStackDevTools() {
     <>
       {/* // Wrap the TanStackRouterDevtools component in a Suspense component so it falls back after loading */}
       <Suspense>
-        <TanStackRouterDevtools position="bottom-left" />
+        <TanStackRouterDevtools position="bottom-right" />
         <TanStackQueryDevtools buttonPosition="bottom-right" />
       </Suspense>
     </>

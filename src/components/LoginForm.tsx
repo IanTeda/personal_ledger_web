@@ -15,16 +15,16 @@
 // 2. [](https://github.com/ysmello/react-tanstack-auth/blob/main/src/state/queries/sign-in.ts)
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/shadcn_ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/components/shadcn_ui/card";
+import { Input } from "@/components/shadcn_ui/input";
+import { Label } from "@/components/shadcn_ui/label";
 import { useForm } from "@tanstack/react-form";
 import { useAuthenticationMutation } from "@/queries/authentication";
 

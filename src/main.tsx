@@ -1,9 +1,15 @@
 //-- ./src/main.tsx
 
-// # Main entry point
-//
-// This is the main entry point of the application. It is responsible for creating
-// the router instance and rendering the application.
+/**
+ * ### Main Entry Point
+ * 
+ * This is the main entry point of the application. It is responsible for creating
+ * the router instance and rendering the application.
+ * 
+ * #### References
+ * 
+ * - [](https://dev.to/khalid7487/configure-tanstack-router-into-vite-project-with-authenticate-routes-active-routes-2463)
+ */
 
 // Import dependencies
 import { StrictMode } from "react";
