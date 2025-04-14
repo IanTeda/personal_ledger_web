@@ -26,15 +26,31 @@ import {
 import { Input } from "@/components/shadcn_ui/input";
 import { Label } from "@/components/shadcn_ui/label";
 import { useForm } from "@tanstack/react-form";
-import { useAuthenticationMutation } from "@/queries/authentication";
+import { Alert, AlertDescription, AlertTitle } from "./shadcn_ui/alert";
+import { AlertCircle } from "lucide-react";
+import { useAuthentication } from "@/contexts/AuthenticationProvider";
+import { redirect } from "@tanstack/react-router";
+// import Logger from "@/logger";
+// import { redirect } from "@tanstack/react-router";
+
+/**
+ * ## Logger Instance
+ *
+ * Create a new logger instance to log messages to the console.
+ *
+ */
+// const log: Logger = new Logger();
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
 
-  // Reference mutation hook
-  const mutation = useAuthenticationMutation();
+  // log.silly("Props: ", props);
+
+  // const [error, setError] = useState("");
+
+  const authentication = useAuthentication();
 
   const form = useForm({
     // Set default form values
@@ -46,11 +62,8 @@ export function LoginForm({
 
     // Form submission handler
     onSubmit: async ({ value }) => {
-      // Call the mutation hook
-      await mutation.mutateAsync({
-        email: value.email,
-        password: value.password,
-      });
+      await authentication.handleLogin(value.email, value.password);
+      redirect({ to: "/" });
     },
   });
 
@@ -124,9 +137,11 @@ export function LoginForm({
           </form>
         </CardContent>
       </Card>
-      <div>
-        {/* <pre>{data?.accessToken}</pre> */}
-      </div>
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>Send an error message.</AlertDescription>
+      </Alert>
     </div>
   );
 }

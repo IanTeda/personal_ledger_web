@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build:proto": "npx protoc --ts_out src/lib/grpc -I=./protos/authentication ./protos/authentication/**/*.proto --experimental_allow_proto3_optional",
+    "build:proto": "npx protoc --ts_out src/lib/grpc -I=./protos/authentication ./protos/authentication/*.proto --experimental_allow_proto3_optional",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -31,7 +31,8 @@
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "tslog": "^4.9.3"
+    "tslog": "^4.9.3",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

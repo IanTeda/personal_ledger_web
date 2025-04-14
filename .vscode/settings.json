@@ -20,6 +20,7 @@
         "protoc",
         "protos",
         "rgba",
+        "shadcn",
         "tmpl",
         "tslog",
         "VITE"
@@ -33,5 +34,14 @@
     "grpc-clicker.timeout": 2,
     "files.associations": {
         "*.css": "tailwindcss"
+    },
+    "files.watcherExclude": {
+        "**/routeTree.gen.ts": true
+    },
+    "search.exclude": {
+        "**/routeTree.gen.ts": true
+    },
+    "files.readonlyInclude": {
+        "**/routeTree.gen.ts": true
     }
 }
