@@ -1,5 +1,7 @@
 //-- ./src/configuration.ts
 
+import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
+
 /** 
  * # Configuration Class
  * 
@@ -56,12 +58,25 @@ class Configuration {
   LOG_LEVEL: logLevel;
 
   /**
+   * ### GRPC Web Transport
+   *
+   * The transport layer for the gRPC web client
+   */
+  GRPC_WEB_TRANSPORT: GrpcWebFetchTransport;
+
+  /**
    * ### Configuration Class Constructor
    */
   constructor() {
     this.AUTHENTICATION_BASE_URL = import.meta.env.VITE_AUTHENTICATION_BASE_URL;
     this.APPLICATION_MODE = import.meta.env.MODE;
     this.LOG_LEVEL = import.meta.env.VITE_LOG_LEVEL || "error";
+    this.GRPC_WEB_TRANSPORT = new GrpcWebFetchTransport({
+      baseUrl: this.AUTHENTICATION_BASE_URL,
+      fetchInit: {
+        credentials: "include",
+      },
+    });
   }
 }
 

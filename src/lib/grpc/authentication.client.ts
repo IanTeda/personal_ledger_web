@@ -11,24 +11,23 @@
 /// service
 ///
 /// It includes definitions for:
-/// - Authentication
-/// - Refresh
-/// - UpdatePassword
-/// - ResetPassword
-/// - Register
-/// - Logout
+/// - Authentication: Authenticate a login request
+/// - Refresh: Using the refresh token, request a new access_token
+/// - UpdatePassword: Update my password
+/// - ResetPassword: Reset a password
+/// - Register: Request registration on the server
+/// - Logout: Remove my access and refresh tokens on the server
 //
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { AuthenticationService } from "./authentication";
 import type { LogoutResponse } from "./authentication";
-import type { LogoutRequest } from "./authentication";
 import type { RegisterRequest } from "./authentication";
 import type { ResetPasswordResponse } from "./authentication";
 import type { ResetPasswordRequest } from "./authentication";
 import type { UpdatePasswordResponse } from "./authentication";
 import type { UpdatePasswordRequest } from "./authentication";
-import type { RefreshRequest } from "./authentication";
+import type { Empty } from "./common";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { AuthenticationResponse } from "./authentication";
 import type { AuthenticationRequest } from "./authentication";
@@ -41,29 +40,42 @@ import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
  */
 export interface IAuthenticationServiceClient {
     /**
+     * Request authorisation using and email and password
+     * TODO: Impliment two factor authentication
+     *
      * @generated from protobuf rpc: Authentication(authentication.AuthenticationRequest) returns (authentication.AuthenticationResponse);
      */
     authentication(input: AuthenticationRequest, options?: RpcOptions): UnaryCall<AuthenticationRequest, AuthenticationResponse>;
     /**
-     * @generated from protobuf rpc: Refresh(authentication.RefreshRequest) returns (authentication.AuthenticationResponse);
+     * Request a new access token, using a current refresh token sent in header
+     *
+     * @generated from protobuf rpc: Refresh(authentication.Empty) returns (authentication.AuthenticationResponse);
      */
-    refresh(input: RefreshRequest, options?: RpcOptions): UnaryCall<RefreshRequest, AuthenticationResponse>;
+    refresh(input: Empty, options?: RpcOptions): UnaryCall<Empty, AuthenticationResponse>;
     /**
+     * Update my current password. Service requires a valid access token
+     *
      * @generated from protobuf rpc: UpdatePassword(authentication.UpdatePasswordRequest) returns (authentication.UpdatePasswordResponse);
      */
     updatePassword(input: UpdatePasswordRequest, options?: RpcOptions): UnaryCall<UpdatePasswordRequest, UpdatePasswordResponse>;
     /**
+     * Reset my password. Service sends a reset password email.
+     *
      * @generated from protobuf rpc: ResetPassword(authentication.ResetPasswordRequest) returns (authentication.ResetPasswordResponse);
      */
     resetPassword(input: ResetPasswordRequest, options?: RpcOptions): UnaryCall<ResetPasswordRequest, ResetPasswordResponse>;
     /**
+     * Request registration. Service requires admin authorisation.
+     *
      * @generated from protobuf rpc: Register(authentication.RegisterRequest) returns (authentication.AuthenticationResponse);
      */
     register(input: RegisterRequest, options?: RpcOptions): UnaryCall<RegisterRequest, AuthenticationResponse>;
     /**
-     * @generated from protobuf rpc: Logout(authentication.LogoutRequest) returns (authentication.LogoutResponse);
+     * Invalidate my access and reset tokens in the service
+     *
+     * @generated from protobuf rpc: Logout(authentication.Empty) returns (authentication.LogoutResponse);
      */
-    logout(input: LogoutRequest, options?: RpcOptions): UnaryCall<LogoutRequest, LogoutResponse>;
+    logout(input: Empty, options?: RpcOptions): UnaryCall<Empty, LogoutResponse>;
 }
 /**
  * Protobuf service definition
@@ -77,6 +89,9 @@ export class AuthenticationServiceClient implements IAuthenticationServiceClient
     constructor(private readonly _transport: RpcTransport) {
     }
     /**
+     * Request authorisation using and email and password
+     * TODO: Impliment two factor authentication
+     *
      * @generated from protobuf rpc: Authentication(authentication.AuthenticationRequest) returns (authentication.AuthenticationResponse);
      */
     authentication(input: AuthenticationRequest, options?: RpcOptions): UnaryCall<AuthenticationRequest, AuthenticationResponse> {
@@ -84,13 +99,17 @@ export class AuthenticationServiceClient implements IAuthenticationServiceClient
         return stackIntercept<AuthenticationRequest, AuthenticationResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: Refresh(authentication.RefreshRequest) returns (authentication.AuthenticationResponse);
+     * Request a new access token, using a current refresh token sent in header
+     *
+     * @generated from protobuf rpc: Refresh(authentication.Empty) returns (authentication.AuthenticationResponse);
      */
-    refresh(input: RefreshRequest, options?: RpcOptions): UnaryCall<RefreshRequest, AuthenticationResponse> {
+    refresh(input: Empty, options?: RpcOptions): UnaryCall<Empty, AuthenticationResponse> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
-        return stackIntercept<RefreshRequest, AuthenticationResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<Empty, AuthenticationResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * Update my current password. Service requires a valid access token
+     *
      * @generated from protobuf rpc: UpdatePassword(authentication.UpdatePasswordRequest) returns (authentication.UpdatePasswordResponse);
      */
     updatePassword(input: UpdatePasswordRequest, options?: RpcOptions): UnaryCall<UpdatePasswordRequest, UpdatePasswordResponse> {
@@ -98,6 +117,8 @@ export class AuthenticationServiceClient implements IAuthenticationServiceClient
         return stackIntercept<UpdatePasswordRequest, UpdatePasswordResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * Reset my password. Service sends a reset password email.
+     *
      * @generated from protobuf rpc: ResetPassword(authentication.ResetPasswordRequest) returns (authentication.ResetPasswordResponse);
      */
     resetPassword(input: ResetPasswordRequest, options?: RpcOptions): UnaryCall<ResetPasswordRequest, ResetPasswordResponse> {
@@ -105,6 +126,8 @@ export class AuthenticationServiceClient implements IAuthenticationServiceClient
         return stackIntercept<ResetPasswordRequest, ResetPasswordResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * Request registration. Service requires admin authorisation.
+     *
      * @generated from protobuf rpc: Register(authentication.RegisterRequest) returns (authentication.AuthenticationResponse);
      */
     register(input: RegisterRequest, options?: RpcOptions): UnaryCall<RegisterRequest, AuthenticationResponse> {
@@ -112,10 +135,12 @@ export class AuthenticationServiceClient implements IAuthenticationServiceClient
         return stackIntercept<RegisterRequest, AuthenticationResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: Logout(authentication.LogoutRequest) returns (authentication.LogoutResponse);
+     * Invalidate my access and reset tokens in the service
+     *
+     * @generated from protobuf rpc: Logout(authentication.Empty) returns (authentication.LogoutResponse);
      */
-    logout(input: LogoutRequest, options?: RpcOptions): UnaryCall<LogoutRequest, LogoutResponse> {
+    logout(input: Empty, options?: RpcOptions): UnaryCall<Empty, LogoutResponse> {
         const method = this.methods[5], opt = this._transport.mergeOptions(options);
-        return stackIntercept<LogoutRequest, LogoutResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<Empty, LogoutResponse>("unary", this._transport, method, opt, input);
     }
 }

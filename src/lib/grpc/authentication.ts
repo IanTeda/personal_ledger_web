@@ -11,13 +11,14 @@
 /// service
 ///
 /// It includes definitions for:
-/// - Authentication
-/// - Refresh
-/// - UpdatePassword
-/// - ResetPassword
-/// - Register
-/// - Logout
+/// - Authentication: Authenticate a login request
+/// - Refresh: Using the refresh token, request a new access_token
+/// - UpdatePassword: Update my password
+/// - ResetPassword: Reset a password
+/// - Register: Request registration on the server
+/// - Logout: Remove my access and refresh tokens on the server
 //
+import { Empty } from "./common";
 import { ServiceType } from "@protobuf-ts/runtime-rpc";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
@@ -28,8 +29,9 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { UserResponse } from "./users";
 /**
- * Authentication request message definitions
+ * Authentication request message definition
  *
  * @generated from protobuf message authentication.AuthenticationRequest
  */
@@ -48,7 +50,7 @@ export interface AuthenticationRequest {
     password: string;
 }
 /**
- * Authentication response message definitions
+ * Authentication response message definition
  *
  * @generated from protobuf message authentication.AuthenticationResponse
  */
@@ -60,27 +62,25 @@ export interface AuthenticationResponse {
      */
     accessToken: string;
     /**
-     * Refresh token to be used to get a new access token
+     * Return the user instance that has just signed in
      *
-     * @generated from protobuf field: string refresh_token = 2;
+     * @generated from protobuf field: authentication.UserResponse user = 2;
      */
-    refreshToken: string;
+    user?: UserResponse;
 }
 /**
- * Refresh request message definitions
+ * Refresh response message definitition
  *
- * @generated from protobuf message authentication.RefreshRequest
+ * @generated from protobuf message authentication.RefreshResponse
  */
-export interface RefreshRequest {
+export interface RefreshResponse {
     /**
-     * Refresh token to authorize the issue of a new access token
-     *
-     * @generated from protobuf field: string refresh_token = 1;
+     * @generated from protobuf field: string access_token = 1;
      */
-    refreshToken: string;
+    accessToken: string;
 }
 /**
- * Update password request message definitions
+ * Update password request message definition
  *
  * @generated from protobuf message authentication.UpdatePasswordRequest
  */
@@ -105,7 +105,7 @@ export interface UpdatePasswordRequest {
     passwordNew: string;
 }
 /**
- * Update password response message definitions
+ * Update password response message definition
  *
  * @generated from protobuf message authentication.UpdatePasswordResponse
  */
@@ -124,7 +124,7 @@ export interface UpdatePasswordResponse {
     message: string;
 }
 /**
- * Reset password request message definitions
+ * Reset password request message definition
  *
  * @generated from protobuf message authentication.ResetPasswordRequest
  */
@@ -137,7 +137,7 @@ export interface ResetPasswordRequest {
     email: string;
 }
 /**
- * Reset password response message definitions
+ * Reset password response message definition
  *
  * @generated from protobuf message authentication.ResetPasswordResponse
  */
@@ -156,7 +156,7 @@ export interface ResetPasswordResponse {
     message: string;
 }
 /**
- * Register request message definitions
+ * Register request message definition
  *
  * @generated from protobuf message authentication.RegisterRequest
  */
@@ -175,7 +175,7 @@ export interface RegisterRequest {
     password: string;
 }
 /**
- * Register response message definitions
+ * Register response message definition
  *
  * @generated from protobuf message authentication.RegisterResponse
  */
@@ -194,20 +194,7 @@ export interface RegisterResponse {
     message: string;
 }
 /**
- * Logout request message definitions
- *
- * @generated from protobuf message authentication.LogoutRequest
- */
-export interface LogoutRequest {
-    /**
-     * Refresh token to for logout (de-authorisation) operation
-     *
-     * @generated from protobuf field: string refresh_token = 1;
-     */
-    refreshToken: string;
-}
-/**
- * Logout response message definitions
+ * Logout response message definition
  *
  * @generated from protobuf message authentication.LogoutResponse
  */
@@ -285,13 +272,12 @@ class AuthenticationResponse$Type extends MessageType<AuthenticationResponse> {
     constructor() {
         super("authentication.AuthenticationResponse", [
             { no: 1, name: "access_token", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "refresh_token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 2, name: "user", kind: "message", T: () => UserResponse }
         ]);
     }
     create(value?: PartialMessage<AuthenticationResponse>): AuthenticationResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.accessToken = "";
-        message.refreshToken = "";
         if (value !== undefined)
             reflectionMergePartial<AuthenticationResponse>(this, message, value);
         return message;
@@ -304,8 +290,8 @@ class AuthenticationResponse$Type extends MessageType<AuthenticationResponse> {
                 case /* string access_token */ 1:
                     message.accessToken = reader.string();
                     break;
-                case /* string refresh_token */ 2:
-                    message.refreshToken = reader.string();
+                case /* authentication.UserResponse user */ 2:
+                    message.user = UserResponse.internalBinaryRead(reader, reader.uint32(), options, message.user);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -322,9 +308,9 @@ class AuthenticationResponse$Type extends MessageType<AuthenticationResponse> {
         /* string access_token = 1; */
         if (message.accessToken !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.accessToken);
-        /* string refresh_token = 2; */
-        if (message.refreshToken !== "")
-            writer.tag(2, WireType.LengthDelimited).string(message.refreshToken);
+        /* authentication.UserResponse user = 2; */
+        if (message.user)
+            UserResponse.internalBinaryWrite(message.user, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -336,26 +322,26 @@ class AuthenticationResponse$Type extends MessageType<AuthenticationResponse> {
  */
 export const AuthenticationResponse = new AuthenticationResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class RefreshRequest$Type extends MessageType<RefreshRequest> {
+class RefreshResponse$Type extends MessageType<RefreshResponse> {
     constructor() {
-        super("authentication.RefreshRequest", [
-            { no: 1, name: "refresh_token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        super("authentication.RefreshResponse", [
+            { no: 1, name: "access_token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
-    create(value?: PartialMessage<RefreshRequest>): RefreshRequest {
+    create(value?: PartialMessage<RefreshResponse>): RefreshResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.refreshToken = "";
+        message.accessToken = "";
         if (value !== undefined)
-            reflectionMergePartial<RefreshRequest>(this, message, value);
+            reflectionMergePartial<RefreshResponse>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: RefreshRequest): RefreshRequest {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: RefreshResponse): RefreshResponse {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string refresh_token */ 1:
-                    message.refreshToken = reader.string();
+                case /* string access_token */ 1:
+                    message.accessToken = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -368,10 +354,10 @@ class RefreshRequest$Type extends MessageType<RefreshRequest> {
         }
         return message;
     }
-    internalBinaryWrite(message: RefreshRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string refresh_token = 1; */
-        if (message.refreshToken !== "")
-            writer.tag(1, WireType.LengthDelimited).string(message.refreshToken);
+    internalBinaryWrite(message: RefreshResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string access_token = 1; */
+        if (message.accessToken !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.accessToken);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -379,9 +365,9 @@ class RefreshRequest$Type extends MessageType<RefreshRequest> {
     }
 }
 /**
- * @generated MessageType for protobuf message authentication.RefreshRequest
+ * @generated MessageType for protobuf message authentication.RefreshResponse
  */
-export const RefreshRequest = new RefreshRequest$Type();
+export const RefreshResponse = new RefreshResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdatePasswordRequest$Type extends MessageType<UpdatePasswordRequest> {
     constructor() {
@@ -713,53 +699,6 @@ class RegisterResponse$Type extends MessageType<RegisterResponse> {
  */
 export const RegisterResponse = new RegisterResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class LogoutRequest$Type extends MessageType<LogoutRequest> {
-    constructor() {
-        super("authentication.LogoutRequest", [
-            { no: 1, name: "refresh_token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value?: PartialMessage<LogoutRequest>): LogoutRequest {
-        const message = globalThis.Object.create((this.messagePrototype!));
-        message.refreshToken = "";
-        if (value !== undefined)
-            reflectionMergePartial<LogoutRequest>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LogoutRequest): LogoutRequest {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* string refresh_token */ 1:
-                    message.refreshToken = reader.string();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: LogoutRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string refresh_token = 1; */
-        if (message.refreshToken !== "")
-            writer.tag(1, WireType.LengthDelimited).string(message.refreshToken);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message authentication.LogoutRequest
- */
-export const LogoutRequest = new LogoutRequest$Type();
-// @generated message type with reflection information, may provide speed optimized methods
 class LogoutResponse$Type extends MessageType<LogoutResponse> {
     constructor() {
         super("authentication.LogoutResponse", [
@@ -819,9 +758,9 @@ export const LogoutResponse = new LogoutResponse$Type();
  */
 export const AuthenticationService = new ServiceType("authentication.AuthenticationService", [
     { name: "Authentication", options: {}, I: AuthenticationRequest, O: AuthenticationResponse },
-    { name: "Refresh", options: {}, I: RefreshRequest, O: AuthenticationResponse },
+    { name: "Refresh", options: {}, I: Empty, O: AuthenticationResponse },
     { name: "UpdatePassword", options: {}, I: UpdatePasswordRequest, O: UpdatePasswordResponse },
     { name: "ResetPassword", options: {}, I: ResetPasswordRequest, O: ResetPasswordResponse },
     { name: "Register", options: {}, I: RegisterRequest, O: AuthenticationResponse },
-    { name: "Logout", options: {}, I: LogoutRequest, O: LogoutResponse }
+    { name: "Logout", options: {}, I: Empty, O: LogoutResponse }
 ]);

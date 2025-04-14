@@ -4,6 +4,7 @@
  * # Use Cookie Hook
  * 
  * https://github.com/SzJackiewicz/thebuggers/blob/main/src/hooks/useCookie.ts
+ * https://github.com/bogdy234/e-commerce/blob/main/frontend/src/hooks/user/useRefreshToken.ts
  */
 
 import { useCookies } from "react-cookie";

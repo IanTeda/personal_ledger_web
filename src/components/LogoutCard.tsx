@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import { Button } from "./shadcn_ui/button";
 import {
   Card,
@@ -8,24 +7,28 @@ import {
   CardTitle,
 } from "./shadcn_ui/card";
 import Logger from "@/logger";
+import { useAuthentication } from "@/contexts/AuthenticationProvider";
 
 /**
  * ### Log Instance
  */
-const log = new Logger()
+const log = new Logger();
 
 export function LogOutCard() {
-  log.silly(
-    "Logout Card"
-  )
-  const navigate = useNavigate();
+  log.silly("Logout Card");
 
-  const onLoginClick = () => {
+  const { handleRefreshToken } = useAuthentication();
+
+  // const navigate = useNavigate();
+
+  const onLogoutClick = () => {
     log.debug("Login button click");
-    navigate({
-      to: "/login"
-    });
-  }
+    handleRefreshToken();
+    // handleLogout();
+    // navigate({
+    //   to: "/login",
+    // });
+  };
 
   return (
     <div className={"flex flex-col gap-6"}>
@@ -37,7 +40,7 @@ export function LogOutCard() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button onClick={onLoginClick} variant="secondary" className="w-full">
+          <Button onClick={onLogoutClick} variant="secondary" className="w-full">
             Login
           </Button>
         </CardContent>
@@ -45,3 +48,4 @@ export function LogOutCard() {
     </div>
   );
 }
+
